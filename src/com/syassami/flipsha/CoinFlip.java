@@ -13,6 +13,18 @@ import android.util.Log;
 import java.security.SecureRandom;
 import java.math.BigInteger;
 
+/*
+ * Alice and Bob each choose a random string, "ljngjkrjgnfdudiudd" and "gfdgdfjkherfsfsd" respectively.
+ * Alice chooses an outcome for an imaginary coin flip, such as "tail"
+ * Bob sends Alice his random string "gfdgdfjkherfsfsd"
+ * Alice immediately computes a SHA-1 hash of the string "tail ljngjkrjgnfdudiudd gfdgdfjkherfsfsd", which is 59dea408d43183a3937957e71a4bcacc616d9cbc and sends it to Bob
+ * Alice asks Bob: "heads or tails"?
+ * Bob says, for instance, "heads".
+ * Alice tells him he's just lost, and proves it by showing the string "tail ljngjkrjgnfdudiudd gfdgdfjkherfsfsd".
+ * Bob can check that Alice didn't lie by computing the SHA-1 of the string himself
+ * Furthermore Bob by providing his own randomly generated string guarantees that Alice wasn't able to precompute an image pair of "tail/random string" or "head/random string".
+ */
+
 public class CoinFlip { 
 	private static String headsOrTails;
 	private static String aliceString;
