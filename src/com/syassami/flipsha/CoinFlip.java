@@ -10,17 +10,25 @@ import javax.crypto.spec.SecretKeySpec;
 
 import android.util.Base64;
 import android.util.Log;
+import java.security.SecureRandom;
+import java.math.BigInteger;
 
 public class CoinFlip { 
 	private static String headsOrTails;
 	private static String aliceString;
 	private static String bobString;
 	static final String TAG = "flipsha";
+	private static SecureRandom random = new SecureRandom();
+
+	  public static String nextSessionId()
+	  {
+	    return new BigInteger(130, random).toString(32);
+	  }
+
 	
-	public static void init(){
-		aliceString = "ljngjkrjgnfdudiudd";
-		bobString  = "gfdgdfjkherfsfsd";
-		headsOrTails = "tail";
+	public static void init(String friendName, String headsOrTails){
+		aliceString = nextSessionId();
+		bobString  = nextSessionId();
 		String toSHA =  headsOrTails.concat(" ").concat(aliceString).concat(" ").concat(bobString);
 		Log.d(TAG,"String to be SHA is "+ toSHA);
 

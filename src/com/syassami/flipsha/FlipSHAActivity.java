@@ -73,7 +73,7 @@ public class FlipSHAActivity extends Activity {
             	if (friendName!=null){
                     Toast.makeText(getApplicationContext(),
                     		"Sending to "+ friendName, 0).show();
-                    		CoinFlip.init();
+                    		CoinFlip.init(friendName, headsTailsSpinner.getSelectedItem().toString());
                     }
             	else {
                     Toast.makeText(getApplicationContext(),
