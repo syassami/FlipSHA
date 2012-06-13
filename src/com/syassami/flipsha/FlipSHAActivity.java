@@ -3,6 +3,7 @@ package com.syassami.flipsha;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -72,6 +73,7 @@ public class FlipSHAActivity extends Activity {
             	if (friendName!=null){
                     Toast.makeText(getApplicationContext(),
                     		"Sending to "+ friendName, 0).show();
+                    		CoinFlip.init();
                     }
             	else {
                     Toast.makeText(getApplicationContext(),
