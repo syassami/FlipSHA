@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 public class FlipSHAActivity extends Activity {
 	private Button sendButton;
+	private Button emailButton;
 	private ListView friendList;
 	private Spinner headsTailsSpinner;
     /** Called when the activity is first created. */
@@ -73,7 +74,7 @@ public class FlipSHAActivity extends Activity {
             	if (friendName!=null){
                     Toast.makeText(getApplicationContext(),
                     		"Sending to "+ friendName, 0).show();
-                    		CoinFlip.init(friendName, headsTailsSpinner.getSelectedItem().toString());
+                    		String result = CoinFlip.init(friendName, headsTailsSpinner.getSelectedItem().toString());
                     }
             	else {
                     Toast.makeText(getApplicationContext(),
@@ -81,5 +82,34 @@ public class FlipSHAActivity extends Activity {
             	}
             }
         });
+        /*
+         * Dealing with email button
+         */
+        
+        emailButton = (Button)this.findViewById(R.id.emailButton);
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	String result = CoinFlip.init(friendName, headsTailsSpinner.getSelectedItem().toString());
+            	sendEmail(result);
+            }
+        });
+    }
+    private void sendEmail(String result){
+    	/* Create the Intent */
+    	
+    	Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+    	emailIntent.setType("plain/text");
+    	
+    	//emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+    	/* Fill it with Data */
+    	emailIntent.setType("plain/text");
+    	//emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"to@email.com"});
+    	emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Here's the code from FlipSHA");
+    	emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "After the coin is flipped and" +
+    			" you don't believe in your friend, check this hash "+ result);
+
+    	/* Send it off to the Activity-Chooser */
+    	startActivity(emailIntent);  
     }
 }

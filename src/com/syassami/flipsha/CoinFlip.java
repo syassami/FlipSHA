@@ -26,14 +26,15 @@ public class CoinFlip {
 	  }
 
 	
-	public static void init(String friendName, String headsOrTails){
+	public static String init(String friendName, String headsOrTails){
+		String aliceSHA =null;
 		aliceString = nextSessionId();
 		bobString  = nextSessionId();
 		String toSHA =  headsOrTails.concat(" ").concat(aliceString).concat(" ").concat(bobString);
 		Log.d(TAG,"String to be SHA is "+ toSHA);
 
 		try {
-			String aliceSHA = SHA1(toSHA);
+			aliceSHA = SHA1(toSHA);
 			Log.d(TAG,"SHA1 to be sent is "+ aliceSHA);
 
 		} catch (NoSuchAlgorithmException e) {
@@ -41,7 +42,7 @@ public class CoinFlip {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
+		return aliceSHA;
 	}
 	
 	public static String SHA1(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException  { 

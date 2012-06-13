@@ -14,9 +14,11 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
+        public static final int FrameLayout1=0x7f050004;
+        public static final int emailButton=0x7f050005;
         public static final int friendList=0x7f050003;
         public static final int headsTailsSpinner=0x7f050001;
-        public static final int sendButton=0x7f050004;
+        public static final int sendButton=0x7f050006;
         public static final int textView1=0x7f050000;
         public static final int textView2=0x7f050002;
     }

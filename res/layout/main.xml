@@ -29,8 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" >
-            </Spinner>
-
+        </Spinner>
     </LinearLayout>
 
     <TextView
@@ -43,13 +42,33 @@
         android:id="@+id/friendList"
         android:layout_width="match_parent"
         android:layout_height="136dp" >
+
         <!-- Preview: listitem=@android:layout/simple_gallery_item -->
     </ListView>
 
-    <Button
-        android:id="@+id/sendButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send!" />
+    <FrameLayout
+        android:id="@+id/FrameLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/emailButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email" />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send" />
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>
