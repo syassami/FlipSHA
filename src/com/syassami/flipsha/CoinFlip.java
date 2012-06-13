@@ -30,6 +30,7 @@ public class CoinFlip {
 	private static String aliceString;
 	private static String bobString;
 	static final String TAG = "flipsha";
+	private static String toSHA;
 	private static SecureRandom random = new SecureRandom();
 
 	  public static String nextSessionId()
@@ -42,7 +43,7 @@ public class CoinFlip {
 		String aliceSHA =null;
 		aliceString = nextSessionId();
 		bobString  = nextSessionId();
-		String toSHA =  headsOrTails.concat(" ").concat(aliceString).concat(" ").concat(bobString);
+		toSHA =  headsOrTails.concat(" ").concat(aliceString).concat(" ").concat(bobString);
 		Log.d(TAG,"String to be SHA is "+ toSHA);
 
 		try {
@@ -55,6 +56,10 @@ public class CoinFlip {
 			e.printStackTrace();
 		}
 		return aliceSHA;
+	}
+	
+	public static String getToBeSHA(){
+		return toSHA;
 	}
 	
 	public static String SHA1(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException  { 

@@ -20,6 +20,7 @@ import android.widget.Toast;
 public class FlipSHAActivity extends Activity {
 	private Button sendButton;
 	private Button emailButton;
+	private Button proofButton;
 	private ListView friendList;
 	private Spinner headsTailsSpinner;
     /** Called when the activity is first created. */
@@ -86,11 +87,18 @@ public class FlipSHAActivity extends Activity {
          * Dealing with email button
          */
         
+       
         emailButton = (Button)this.findViewById(R.id.emailButton);
         emailButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	String result = CoinFlip.init(friendName, headsTailsSpinner.getSelectedItem().toString());
             	sendEmail(result);
+            }
+        });
+        proofButton = (Button)this.findViewById(R.id.proofButton);
+        proofButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	sendProofEmail(CoinFlip.getToBeSHA());
             }
         });
     }
@@ -110,6 +118,23 @@ public class FlipSHAActivity extends Activity {
     			" you don't believe in your friend, check this hash "+ result);
 
     	/* Send it off to the Activity-Chooser */
+    	startActivity(emailIntent);  
+    }
+    
+    private void sendProofEmail(String proof){
+    	/* Create the Intent */
+    	
+    	Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+    	emailIntent.setType("plain/text");
+    	
+    	//emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+    	/* Fill it with Data */
+    	emailIntent.setType("plain/text");
+    	//emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"to@email.com"});
+    	emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Here's the code from FlipSHA");
+    	emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Looks like you don't believe your friend," +
+    			" do a SHA1 of this string to see the proof "+proof);
     	startActivity(emailIntent);  
     }
 }
