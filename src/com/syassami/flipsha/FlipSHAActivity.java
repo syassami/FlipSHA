@@ -98,7 +98,12 @@ public class FlipSHAActivity extends Activity {
         proofButton = (Button)this.findViewById(R.id.proofButton);
         proofButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            	if (CoinFlip.getToBeSHA()!=null){
             	sendProofEmail(CoinFlip.getToBeSHA());
+            	}
+            	else {
+            		Toast.makeText(getApplicationContext(), "Please flip and send first", 0).show();
+            	}
             }
         });
     }
